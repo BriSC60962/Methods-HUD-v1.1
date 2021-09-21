@@ -34,6 +34,7 @@ namespace Variables__HUD_v1._0_
             Console.WriteLine();
             Console.WriteLine();
             ShowHUD();
+            Console.ReadKey(true);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Player got hit by a slime and took 100 damage to health stat!");
