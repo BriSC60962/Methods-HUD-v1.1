@@ -9,7 +9,7 @@ namespace Variables__HUD_v1._0_
     class Program
     {
         static float score;
-        static float multiplier;
+        
         static int health;
         static int lives;
         static int shield;
@@ -24,7 +24,7 @@ namespace Variables__HUD_v1._0_
             health = 150;
             lives = 2;
             shield = 100;
-            multiplier = 1.57f;
+            
 
 
             //Console.WriteLine(score * multiplier);
@@ -42,7 +42,7 @@ namespace Variables__HUD_v1._0_
 
             Console.ReadKey(true);
             Console.WriteLine();
-            health = health - 100;
+            TakeDamage(100);
             ShowHUD();
             Console.ReadKey(true);
             Console.WriteLine();
@@ -52,7 +52,7 @@ namespace Variables__HUD_v1._0_
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine();
             Console.ReadKey(true);
-            shield = shield - 100;
+            ShieldDamage(100);
             ShowHUD();
             Console.ReadKey(true);
             Console.WriteLine();
@@ -60,7 +60,7 @@ namespace Variables__HUD_v1._0_
             Console.WriteLine("Player defeats Slime, earning 150 points to their Score!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ReadKey(true);
-            score = score + 150;
+            AddScore(30,5);
             Console.WriteLine();
             ShowHUD();
             Console.ReadKey(true);
@@ -72,27 +72,28 @@ namespace Variables__HUD_v1._0_
             Console.WriteLine("Bat attacks, dealing 50 damage to the player!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ReadKey(true);
-            health = health - 50;
+            TakeDamage(50);
             Console.WriteLine();
             ShowHUD();
             Console.ReadKey(true);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Due to Player Health hitting 0, a life has been lost...");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Player Health has Replenished back to 150!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ReadKey(true);
             Console.WriteLine();
-            lives = lives - 1;
-            health = health + 150;
+            LiveRestock();
             ShowHUD();
             Console.ReadKey(true);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Player picked up a Score Multiplier!!! Score multiplys by 1.57!");
+            Console.WriteLine("Player defeats Bat, earning 50 points to their Score!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ReadKey(true);
             Console.WriteLine();
-            score = score * multiplier;
+            AddScore(10,5);
             ShowHUD();
             Console.ReadKey(true);
             Console.WriteLine();
@@ -110,10 +111,34 @@ namespace Variables__HUD_v1._0_
         {
             Console.WriteLine("Current Stats");
             Console.WriteLine();
-            Console.WriteLine("Score: " + (int)score);
+            Console.WriteLine("Score: " + score);
             Console.WriteLine("Health: " + health);
             Console.WriteLine("Lives: " + lives);
             Console.WriteLine("Shield: " + shield);
+        }
+
+        static void TakeDamage(int damage)
+        {
+            health = health - damage;
+        }
+
+        static void AddScore(int enemyvalue, int scoremultiplier)
+        {
+            score = score + enemyvalue * scoremultiplier;
+        }
+
+        static void ShieldDamage(int blockeddamage)
+        {
+            shield = shield - blockeddamage;
+        }
+
+        static void LiveRestock()
+        {
+            if (health <= 0)
+            {
+                lives = lives - 1;
+                health = health + 150;
+            }
         }
     }
 }
