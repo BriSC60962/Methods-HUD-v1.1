@@ -14,9 +14,10 @@ namespace Variables__HUD_v1._0_
         static int lives;
         static int shield;
         static string name;
-
-        
-
+        static int damage;
+        static int pointsEarned;
+        static int scoremultiplier;
+        static int blockeddamage;
         static void Main(string[] args)
         {
             name = "Brianna Chisholm";
@@ -24,10 +25,11 @@ namespace Variables__HUD_v1._0_
             health = 150;
             lives = 2;
             shield = 100;
-            
+            damage = 0;
+            pointsEarned = 0;
+            scoremultiplier = 0;
+            blockeddamage = 0;
 
-
-            //Console.WriteLine(score * multiplier);
             Console.WriteLine("//////////////////////");
             Console.WriteLine("// " + name +" //");
             Console.WriteLine("//////////////////////");
@@ -42,7 +44,8 @@ namespace Variables__HUD_v1._0_
 
             Console.ReadKey(true);
             Console.WriteLine();
-            TakeDamage(100);
+            damage = 100;
+            TakeDamage(damage);
             ShowHUD();
             Console.ReadKey(true);
             Console.WriteLine();
@@ -52,15 +55,19 @@ namespace Variables__HUD_v1._0_
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine();
             Console.ReadKey(true);
-            ShieldDamage(100);
+            blockeddamage = 100;
+            ShieldDamage(blockeddamage);
             ShowHUD();
             Console.ReadKey(true);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Player defeats Slime, earning 150 points to their Score!");
+            Console.WriteLine("Player defeats Slime! Player earns 30 points from the enemy with a score multiplier of 5!");
+            Console.WriteLine("Total of 150 points added to their Score!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ReadKey(true);
-            AddScore(30,5);
+            pointsEarned = 30;
+            scoremultiplier = 5;
+            AddScore(pointsEarned , scoremultiplier);
             Console.WriteLine();
             ShowHUD();
             Console.ReadKey(true);
@@ -72,7 +79,8 @@ namespace Variables__HUD_v1._0_
             Console.WriteLine("Bat attacks, dealing 50 damage to the player!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ReadKey(true);
-            TakeDamage(50);
+            damage = 50;
+            TakeDamage(damage);
             Console.WriteLine();
             ShowHUD();
             Console.ReadKey(true);
@@ -89,11 +97,14 @@ namespace Variables__HUD_v1._0_
             Console.ReadKey(true);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Player defeats Bat, earning 50 points to their Score!");
+            Console.WriteLine("Player defeats Bat! Player earns 10 points from the enemy with a score multiplier of 5!");
+            Console.WriteLine("Total of 50 points added to their Score!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ReadKey(true);
             Console.WriteLine();
-            AddScore(10,5);
+            pointsEarned = 10;
+            scoremultiplier = 5;
+            AddScore(pointsEarned, scoremultiplier);
             ShowHUD();
             Console.ReadKey(true);
             Console.WriteLine();
