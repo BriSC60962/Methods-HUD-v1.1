@@ -122,9 +122,9 @@ namespace Variables__HUD_v1._0_
             health = health - damage;
         }
 
-        static void AddScore(int enemyvalue, int scoremultiplier)
+        static void AddScore(int pointsEarned, int scoremultiplier)
         {
-            score = score + enemyvalue * scoremultiplier;
+            score = score + pointsEarned * scoremultiplier;
         }
 
         static void ShieldDamage(int blockeddamage)
